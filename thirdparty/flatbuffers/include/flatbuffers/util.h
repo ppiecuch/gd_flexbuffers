@@ -18,7 +18,6 @@
 #define FLATBUFFERS_UTIL_H_
 
 #include <errno.h>
-
 #include "flatbuffers/base.h"
 
 #ifndef FLATBUFFERS_PREFER_PRINTF

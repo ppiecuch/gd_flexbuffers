@@ -6,5 +6,8 @@ env_flexbuffer = env_modules.Clone()
 
 env_flexbuffer.Prepend(CPPPATH="thirdparty/flatbuffers/include")
 
+if env["platform"] == "frt" and env["frt_arch"] == "gcw0":
+    env_flexbuffer.Append(CPPDEFINES=["FLATBUFFERS_LOCALE_INDEPENDENT=0"])
+
 env_flexbuffer.add_source_files(env.modules_sources, "*.cpp")
 env_flexbuffer.add_source_files(env.modules_sources, "thirdparty/flatbuffers/src/util.cpp")
