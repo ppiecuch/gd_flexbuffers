@@ -40,13 +40,11 @@
 
 #include "core/io/resource_importer.h"
 #include "core/io/resource_saver.h"
-#include "core/os/copymem.h"
-
-#include "thirdparty/flatbuffers/include/flatbuffers/flexbuffers.h"
-
 #include "core/io/file_access_pack.h"
 
 #include "resource_importer_flexbuffer.h"
+
+#include "thirdparty/flatbuffers/include/flatbuffers/flexbuffers.h"
 
 static const Variant flexbuffer_to_variant(flexbuffers::Reference buffer) {
 	if (buffer.IsNull()) {
@@ -177,14 +175,14 @@ static Vector<uint8_t> variant_to_flexbuffer(Variant variant) {
 	std::vector<uint8_t> std_vector = fbb.GetBuffer();
 	Vector<uint8_t> godot_bytes;
 	godot_bytes.resize(std_vector.size());
-	copymem(godot_bytes.ptrw(), std_vector.data(), std_vector.size());
+	memcpy(godot_bytes.ptrw(), std_vector.data(), std_vector.size());
 	return godot_bytes;
 }
 
 static Variant flexbuffer_to_variant(Vector<uint8_t> p_buffer) {
 	std::vector<uint8_t> std_vector;
 	std_vector.resize(p_buffer.size());
-	copymem(std_vector.data(), p_buffer.ptr(), p_buffer.size());
+	memcpy(std_vector.data(), p_buffer.ptr(), p_buffer.size());
 	flexbuffers::Reference flat = flexbuffers::GetRoot(std_vector);
 	return flexbuffer_to_variant(flat);
 }

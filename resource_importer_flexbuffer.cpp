@@ -29,7 +29,6 @@
 /*************************************************************************/
 
 #include "core/io/file_access_pack.h"
-#include "core/os/copymem.h"
 
 #include "resource_importer_flexbuffer.h"
 
